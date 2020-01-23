@@ -2,6 +2,8 @@
 import nltk
 import string
 import os
+import numpy as np
+from difflib import SequenceMatcher
 from unicodedata import normalize
 nltk.download('stopwords')
 nltk.download('rslp')
@@ -27,6 +29,10 @@ for line in lines:
     if pos < 0:
         continue
     base.append((line[pos+2:],'neutro'))
+
+classes=[('transito',['acidente','semaforo','atropelamento','carro','velocidade','onibus','veiculo','sinal','sinalizacao','transporte','avenida','placa'],0),('mobilidade',['Engarrafamento','Estacionamento','carro','pedestre','gente','pessoa','morador','vizinho','acesso','faixa','ponte','fechamento','cruzamento','ciclofaixa','sinal','bicicleta','bike','lombada','estacionamento,'],0),('Ocupação urbana',['Invasao,'],0),('Furtos',['assalto','comercio','roubo','pessoas','segurança,'],0),('Autoridade pública',['Secretaria','Guarda','Municipal','GMF','Floram','Associacao','Comandante','Coronel','Policial','Diope','Governo'],0),('Bairros',['Parque','Abrao','Posto','arvores','Entorno','Escola','Pista','terreno','Coqueiros'],0),('Ruas',['Tamandare','Max','Souza','Expressa','Aparecida','Abel','Capela'],0)]
+
+
 # base = [('O amor é lindo!','alegria'),
 #         ('Eu sou admirada por muitos.','alegria'), 
 #         ('Me sinto completamente amado.','alegria'), 
@@ -113,16 +119,17 @@ def removeStopWords(texto):
         frases.append((semStop, emocao))
     return frases
 
-def removeStopWordsSpanish(texto):
-    
-    frases=[]
-    for(palavras, emocao) in texto:
-        semStop = [p for p in palavras if p not in stopwordsSpanish]
-        frases.append((semStop, emocao))
-    return frases
-
 textoSemStopWords = removeStopWords(textoSemPontuacao)
-textoSemStopWords = removeStopWordsSpanish(textoSemStopWords)
+
+# def removeStopWordsSpanish(texto):
+    
+#     frases=[]
+#     for(palavras, emocao) in texto:
+#         semStop = [p for p in palavras if p not in stopwordsSpanish]
+#         frases.append((semStop, emocao))
+#     return frases
+
+# textoSemStopWords = removeStopWordsSpanish(textoSemStopWords)
 #print(['Sem Stopwords'] + textoSemStopWords)
 print()
 
@@ -133,13 +140,50 @@ def retornaPalavras(texto):
         frasesPreProcessadas.extend(palavras)
     return frasesPreProcessadas
 
-def buscaFrequencia(texto):
-    qtd = nltk.FreqDist(texto) #retorna a frequencia de cada palavera
-    return qtd
 
-frequenciaSW = buscaFrequencia(retornaPalavras(textoSemStopWords))
-print('FREQUENCIA_--------------------------')
-print(frequenciaSW.most_common(10000)) #10000 primeiras palavas mais frequentes
+palavras= retornaPalavras(textoSemStopWords)
+print(len(classes))
+print()
+print()
+def fuzzy_search(search_key, word, strictness):
+    similarity = SequenceMatcher(None, word, search_key)
+    if(similarity.ratio() > strictness):
+        return True
+    else:
+        return False
+printClasses=""
+for x in range(0,len(classes)):
+    frequencia=0
+    print()
+    print()
+    print("============"+classes[x][0]+"============")
+    print()
+    for palavra in palavras:
+        if(palavra.find("http")<0):
+            for termo in classes[x][1]:
+                #print(levDist)
+                if (fuzzy_search(termo,palavra,0.84)):
+                    print(palavra+" = "+termo)
+                    frequencia+=1
+    printClasses+=classes[x][0]+","+str(frequencia)+"\n"
+print()
+print()
+print("WARNING: THE OUTPUT IS ALREADY FORMATTED AS CSV!")
+print()
+print()
+print("categoria,frequencia")
+print(printClasses)
+
+
+           
+
+# def buscaFrequencia(texto):
+#     qtd = nltk.FreqDist(texto) #retorna a frequencia de cada palavera
+#     return qtd
+
+# frequenciaSW = buscaFrequencia(retornaPalavras(textoSemStopWords))
+# print('FREQUENCIA_--------------------------')
+# print(frequenciaSW.most_common(10000)) #10000 primeiras palavas mais frequentes
 
 # def aplicaStemmer(texto):
     
