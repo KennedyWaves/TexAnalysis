@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Contagem_e_classificacao\\Preprocessor\\Preprocessor\\Preprocessor.csproj": {}
+    "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Preprocessor\\Preprocessor\\Preprocessor.csproj": {}
   },
   "projects": {
-    "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Contagem_e_classificacao\\Preprocessor\\Preprocessor\\Preprocessor.csproj": {
+    "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Preprocessor\\Preprocessor\\Preprocessor.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Contagem_e_classificacao\\Preprocessor\\Preprocessor\\Preprocessor.csproj",
+        "projectUniqueName": "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Preprocessor\\Preprocessor\\Preprocessor.csproj",
         "projectName": "Preprocessor",
-        "projectPath": "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Contagem_e_classificacao\\Preprocessor\\Preprocessor\\Preprocessor.csproj",
+        "projectPath": "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Preprocessor\\Preprocessor\\Preprocessor.csproj",
         "packagesPath": "C:\\Users\\WAVES\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Contagem_e_classificacao\\Preprocessor\\Preprocessor\\obj\\",
+        "outputPath": "C:\\Users\\WAVES\\Source\\Repos\\TexAnalysis\\Preprocessor\\Preprocessor\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

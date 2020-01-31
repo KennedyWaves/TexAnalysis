@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 
 namespace Preprocessor
@@ -11,9 +11,16 @@ namespace Preprocessor
         {
             Console.WriteLine("C# PRE-PROCESSOR FOR WHATSAPP! WORKS BETTER THAN PYTHON!");
             string linesText = File.ReadAllText("_chat.txt");
-            linesText = linesText.Replace("\r\n[", "§@§");
-            linesText = linesText.Replace("\r\n", " ");
-            string[] lines = linesText.Replace("§@§", "\r\n[").Split("\r\n");
+            linesText = linesText.Replace("\n[", "§@§");
+            linesText = linesText.Replace("\r[", "§@§");
+            linesText = linesText.Replace("§@§§@§", "§@§");
+            linesText = linesText.Replace("\n", " ");
+            linesText = linesText.Replace("\r", " ");
+            linesText = linesText.Replace("§@§", "\n[");
+            //linesText = linesText.Replace(" [", "\n[");
+            linesText = linesText.Replace("  ‎[", "\n[");
+            /*find broken lines*/
+            string[] lines = linesText.Split("\n");
             for (int x = 0; x < lines.Length; x++)
             {
                 int textStarts = lines[x].IndexOf(": ");

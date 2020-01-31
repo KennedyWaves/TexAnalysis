@@ -31,7 +31,7 @@ for x in range(0,len(lines)):
         continue
     base.append((lines[x][1:11],lines[x][22:pos],lines[x][pos+2:len(lines[x])-1]))
 
-classes=[('transito',['acidente','semaforo','atropelamento','carro','velocidade','onibus','veiculo','sinal','sinalizacao','transporte','avenida','placa'],0),('mobilidade',['Engarrafamento','Estacionamento','carro','pedestre','gente','pessoa','morador','vizinho','acesso','faixa','ponte','fechamento','cruzamento','ciclofaixa','sinal','bicicleta','bike','lombada','estacionamento,'],0),('Ocupação urbana',['Invasao,'],0),('Furtos',['assalto','comercio','roubo','pessoas','segurança,'],0),('Autoridade publica',['Secretaria','Guarda','Municipal','GMF','Floram','Associacao','Comandante','Coronel','Policial','Diope','Governo'],0),('Bairros',['Parque','Abrao','Posto','arvores','Entorno','Escola','Pista','terreno','Coqueiros'],0),('Ruas',['Tamandare','Max','Souza','Expressa','Aparecida','Abel','Capela'])]
+classes=[('transito',['acidente','semaforo','atropelamento','carro','velocidade','onibus','veiculo','sinal','sinalizacao','transporte','avenida','placa'],0),('mobilidade',['Engarrafamento','Estacionamento','carro','pedestre','gente','pessoa','morador','vizinho','acesso','faixa','ponte','fechamento','cruzamento','ciclofaixa','sinal','bicicleta','bike','lombada','estacionamento,'],0),('Ocupação urbana',['Invasao,'],0),('Furtos',['assalto','comercio','roubo','pessoas','segurança,'],0),('Autoridade publica',['Secretario','Secretaria','Guarda','Municipal','GMF','Floram','Associacao','Comandante','Coronel','Policial','Diope','Governo'],0),('Bairros',['Parque','Abrao','Posto','arvores','Entorno','Escola','Pista','terreno','Coqueiros'],0),('Ruas',['Tamandare','Max','Souza','Expressa','Aparecida','Abel','Capela'])]
 
 
 # base = [('O amor é lindo!','alegria'),
@@ -156,7 +156,7 @@ printClasses=""
 
 toPrint = []
 
-file = open(__location__+"/result_verticalbar-separeted.csv,","w",encoding="utf-8")
+file = open(__location__+"/result_verticalbar-separeted.csv","w",encoding="utf-8")
 
 for lineTuple in base:
     if(lineTuple[2].find("http")<0):
@@ -166,7 +166,7 @@ for lineTuple in base:
             for palavra in retornaPalavras(removePontuacao(tokeniza(lineTuple[2]))):
                 #print(palavra)
                 for termo in classes[x][1]:
-                    if (fuzzy_search(termo,palavra,0.84)):
+                    if (fuzzy_search(termo,palavra,0.8)):
                         #print(classes[x][0]+" = "+palavra+" = "+termo)
                         frequencia+=1
             if(frequencia>0):
