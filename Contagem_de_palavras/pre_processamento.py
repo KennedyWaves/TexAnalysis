@@ -10,10 +10,10 @@ __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file
 
 print()
 print("LOADING DATA FROM: ")
-print(__location__+"/_chat.txt AS UTF-8")
+print(__location__+"/preprocessado.txt AS UTF-8")
 
 # Open the file with read only permit
-f = open(__location__+"/_chat.txt", encoding="utf-8")
+f = open(__location__+"/preprocessado.txt", encoding="utf-8")
 # use readlines to read all lines in the file
 # The variable "lines" is a list containing all lines in the file
 lines = f.readlines()

@@ -5,6 +5,7 @@ import os
 import numpy as np
 from difflib import SequenceMatcher
 from unicodedata import normalize
+
 nltk.download('stopwords')
 nltk.download('rslp')
 stopwords = nltk.corpus.stopwords.words('portuguese')
@@ -13,9 +14,9 @@ __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file
 
 print()
 print("LOADING DATA FROM: ")
-print(__location__+"/_chat.txt AS UTF-8")
+print(__location__+"/preprocessado.txt AS UTF-8")
 # Open the file with read only permit
-f = open(__location__+"/_chat.txt", encoding='latin-1')
+f = open(__location__+"/preprocessado.txt", encoding='utf-8')
 # use readlines to read all lines in the file
 # The variable "lines" is a list containing all lines in the file
 lines = f.readlines()
@@ -24,13 +25,13 @@ f.close()
 
 base=[]
 
-for line in lines:
-    pos = line.find(': ')
+for x in range(0,len(lines)):
+    pos = lines[x].find(': ')
     if pos < 0:
         continue
-    base.append((line[pos+2:],'neutro'))
+    base.append((lines[x][1:11],lines[x][22:pos],lines[x][pos+2:len(lines[x])-1]))
 
-classes=[('transito',['acidente','semaforo','atropelamento','carro','velocidade','onibus','veiculo','sinal','sinalizacao','transporte','avenida','placa'],0),('mobilidade',['Engarrafamento','Estacionamento','carro','pedestre','gente','pessoa','morador','vizinho','acesso','faixa','ponte','fechamento','cruzamento','ciclofaixa','sinal','bicicleta','bike','lombada','estacionamento,'],0),('Ocupação urbana',['Invasao,'],0),('Furtos',['assalto','comercio','roubo','pessoas','segurança,'],0),('Autoridade pública',['Secretaria','Guarda','Municipal','GMF','Floram','Associacao','Comandante','Coronel','Policial','Diope','Governo'],0),('Bairros',['Parque','Abrao','Posto','arvores','Entorno','Escola','Pista','terreno','Coqueiros'],0),('Ruas',['Tamandare','Max','Souza','Expressa','Aparecida','Abel','Capela'],0)]
+classes=[('transito',['acidente','semaforo','atropelamento','carro','velocidade','onibus','veiculo','sinal','sinalizacao','transporte','avenida','placa'],0),('mobilidade',['Engarrafamento','Estacionamento','carro','pedestre','gente','pessoa','morador','vizinho','acesso','faixa','ponte','fechamento','cruzamento','ciclofaixa','sinal','bicicleta','bike','lombada','estacionamento,'],0),('Ocupação urbana',['Invasao,'],0),('Furtos',['assalto','comercio','roubo','pessoas','segurança,'],0),('Autoridade publica',['Secretaria','Guarda','Municipal','GMF','Floram','Associacao','Comandante','Coronel','Policial','Diope','Governo'],0),('Bairros',['Parque','Abrao','Posto','arvores','Entorno','Escola','Pista','terreno','Coqueiros'],0),('Ruas',['Tamandare','Max','Souza','Expressa','Aparecida','Abel','Capela'])]
 
 
 # base = [('O amor é lindo!','alegria'),
@@ -55,71 +56,69 @@ classes=[('transito',['acidente','semaforo','atropelamento','carro','velocidade'
 #         ('Estou com medo do resultado dos meus testes.', 'medo')]
 
 #print(['Base'] + base)
-print()
+# print()
 def tokeniza(texto):
-    
     tokens = []
-    for(palavras, emocao) in texto:
-        token = [p for p in palavras.split()]
-        tokens.append((token, emocao))
+    token = [p for p in texto.split()]
+    tokens.append(token)
     return tokens
 
-tokens = tokeniza(base)
+# tokens = tokeniza(base)
 #print(['Tokens'] + tokens)
-print()
+# print()
 
 def descapitaliza(texto):
     
     descapitalizado = []
-    for(palavras, emocao) in texto:
+    for palavras in texto:
         descap = [p.casefold() for p in palavras]
-        descapitalizado.append((descap, emocao))
+        descapitalizado.append(descap)
     return descapitalizado
 
-textoDescapitalizado = descapitaliza(tokens)
-#print(['Case Folding'] + textoDescapitalizado)
-print()
+# textoDescapitalizado = descapitaliza(tokens)
+# print(['Case Folding'] + textoDescapitalizado)
+# print()
 
 
-def removeAcentos(texto):     
-    frasesSemAcento = []
-    for(palavras, emocao) in texto:
-        semAcento = [normalize('NFKD', p).encode('ASCII','ignore').decode('ASCII') for p in palavras]
-        frasesSemAcento.append((semAcento, emocao))
-    return frasesSemAcento
+# def removeAcentos(texto):     
+#     frasesSemAcento = []
+#     for(palavras, emocao) in texto:
+#         semAcento = [normalize('NFKD', p).encode('ASCII','ignore').decode('ASCII') for p in palavras]
+#         frasesSemAcento.append((semAcento, emocao))
+#     return frasesSemAcento
 
-textoSemAcentos = removeAcentos(textoDescapitalizado)
-#print(['Sem acentos'] + textoSemAcentos)
-print()
+# textoSemAcentos = removeAcentos(textoDescapitalizado)
+# print(['Sem acentos'] + textoSemAcentos)
+# print()
 
 def removePontuacao(texto):
     frasesSemPonto = []
-    for(frase, emocao) in texto:
+    for frase in texto:
         palavrasSemPonto = []
         for palavras in frase:
             semPonto=''
             semPonto = [char for char in palavras if char not in string.punctuation]
             palavraSemPonto = ''.join(semPonto)
             palavrasSemPonto.append(palavraSemPonto)
-        frasesSemPonto.append((palavrasSemPonto,emocao))   
+        frasesSemPonto.append(palavrasSemPonto)   
     return frasesSemPonto
 
-textoSemPontuacao = removePontuacao(textoSemAcentos)
-#print(['Sem pontuação'] + textoSemPontuacao)
-print()    
+# textoSemPontuacao = removePontuacao(textoSemAcentos)
+# print(['Sem pontuação'] + textoSemPontuacao)
+# print()    
 
-stopwordsNLTK = nltk.corpus.stopwords.words('portuguese')
-stopwordsSpanish = nltk.corpus.stopwords.words('spanish')
+# stopwordsNLTK = nltk.corpus.stopwords.words('portuguese')
+# stopwordsSpanish = nltk.corpus.stopwords.words('spanish')
 
-def removeStopWords(texto):
+# def removeStopWords(texto):
     
-    frases=[]
-    for(palavras, emocao) in texto:
-        semStop = [p for p in palavras if p not in stopwordsNLTK]
-        frases.append((semStop, emocao))
-    return frases
+#     frases=[]
+#     for(palavras, emocao) in texto:
+#         semStop = [p for p in palavras if p not in stopwordsNLTK]
+#         frases.append((semStop, emocao))
+#     return frases
 
-textoSemStopWords = removeStopWords(textoSemPontuacao)
+# textoSemStopWords = removeStopWords(textoSemPontuacao)
 
 # def removeStopWordsSpanish(texto):
     
@@ -130,19 +129,19 @@ textoSemStopWords = removeStopWords(textoSemPontuacao)
 #     return frases
 
 # textoSemStopWords = removeStopWordsSpanish(textoSemStopWords)
-#print(['Sem Stopwords'] + textoSemStopWords)
-print()
+# print(['Sem Stopwords'] + textoSemStopWords)
+# print()
 
 def retornaPalavras(texto):
     
     frasesPreProcessadas = []
-    for(palavras, emocao) in texto:
+    for palavras in texto:
         frasesPreProcessadas.extend(palavras)
     return frasesPreProcessadas
 
 
-palavras= retornaPalavras(textoSemStopWords)
-print(len(classes))
+# palavras= retornaPalavras(textoSemStopWords)
+# print(len(classes))
 print()
 print()
 def fuzzy_search(search_key, word, strictness):
@@ -151,28 +150,60 @@ def fuzzy_search(search_key, word, strictness):
         return True
     else:
         return False
+
 printClasses=""
-for x in range(0,len(classes)):
-    frequencia=0
-    print()
-    print()
-    print("============"+classes[x][0]+"============")
-    print()
-    for palavra in palavras:
-        if(palavra.find("http")<0):
-            for termo in classes[x][1]:
-                #print(levDist)
-                if (fuzzy_search(termo,palavra,0.84)):
-                    print(palavra+" = "+termo)
-                    frequencia+=1
-    printClasses+=classes[x][0]+","+str(frequencia)+"\n"
-print()
-print()
-print("WARNING: THE OUTPUT IS ALREADY FORMATTED AS CSV!")
-print()
-print()
-print("categoria,frequencia")
-print(printClasses)
+
+
+toPrint = []
+
+file = open(__location__+"/result_verticalbar-separeted.csv,","w",encoding="utf-8")
+
+for lineTuple in base:
+    if(lineTuple[2].find("http")<0):
+        freqVector=[]
+        for x in range(0,len(classes)):
+            frequencia=0
+            for palavra in retornaPalavras(removePontuacao(tokeniza(lineTuple[2]))):
+                #print(palavra)
+                for termo in classes[x][1]:
+                    if (fuzzy_search(termo,palavra,0.84)):
+                        #print(classes[x][0]+" = "+palavra+" = "+termo)
+                        frequencia+=1
+            if(frequencia>0):
+                freqVector.append((classes[x],frequencia))
+        ref=(('Outros',''),0)
+        for cat in freqVector:
+            #print(cat[0][0]+" | "+str(cat[1]))
+            if(cat[1]>ref[1]):
+                ref=cat
+        #print("choosen "+ref[0][0])
+        file.write(lineTuple[0]+"|"+lineTuple[1]+"|"+lineTuple[2]+"|"+ref[0][0].encode('iso-8859-1').decode('utf8')+"\n")
+        print(lineTuple[0]+" | "+lineTuple[1]+" | "+str(ref[0][0]))
+file.close()
+        
+            
+            
+# for x in range(0,len(classes)):
+#     frequencia=0
+#     print()
+#     print()
+#     print("============"+classes[x][0]+"============")
+#     print()
+#     for lineStr in base:
+#         if(lineStr(2).find("http")<0):
+#             for palavra in list(lineStr[2]):
+#                 for termo in classes[x][1]:
+#                     if (fuzzy_search(termo,palavra,0.84)):
+#                         print(palavra+" = "+termo)
+#                         frequencia+=1
+#     printClasses+=classes[x][0]+","+str(frequencia)+"\n"
+# print()
+# print()
+# print("WARNING: THE OUTPUT IS ALREADY FORMATTED AS CSV!")
+# print()
+# print()
+# print("categoria,frequencia")
+# print(printClasses)
 
 
            
