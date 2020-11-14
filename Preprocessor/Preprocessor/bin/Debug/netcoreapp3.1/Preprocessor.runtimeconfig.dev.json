@@ -2,8 +2,7 @@
   "runtimeOptions": {
     "additionalProbingPaths": [
       "C:\\Users\\WAVES\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\WAVES\\.nuget\\packages",
-      "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      "C:\\Users\\WAVES\\.nuget\\packages"
     ]
   }
 }

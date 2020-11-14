@@ -10,7 +10,11 @@ namespace Preprocessor
         static void Main(string[] args)
         {
             Console.WriteLine("C# PRE-PROCESSOR FOR WHATSAPP! WORKS BETTER THAN PYTHON!");
-            string linesText = File.ReadAllText("_chat.txt");
+            if (args.Length < 1)
+            {
+                return;
+            }
+            string linesText = File.ReadAllText(args[0]);
             linesText = linesText.Replace("\n[", "§@§");
             linesText = linesText.Replace("\r[", "§@§");
             linesText = linesText.Replace("§@§§@§", "§@§");

@@ -31,3 +31,16 @@ C:\Users\WAVES\Source\Repos\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netc
 C:\Users\WAVES\Source\Repos\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.dll
 C:\Users\WAVES\Source\Repos\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.pdb
 C:\Users\WAVES\Source\Repos\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.csprojAssemblyReference.cache
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\bin\Debug\netcoreapp3.1\Preprocessor.exe
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\bin\Debug\netcoreapp3.1\Preprocessor.deps.json
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\bin\Debug\netcoreapp3.1\Preprocessor.runtimeconfig.json
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\bin\Debug\netcoreapp3.1\Preprocessor.runtimeconfig.dev.json
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\bin\Debug\netcoreapp3.1\Preprocessor.dll
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\bin\Debug\netcoreapp3.1\Preprocessor.pdb
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.csprojAssemblyReference.cache
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.AssemblyInfoInputs.cache
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.AssemblyInfo.cs
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.csproj.CoreCompileInputs.cache
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.dll
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.pdb
+C:\Users\WAVES\source\repos\diegolameira\TexAnalysis\Preprocessor\Preprocessor\obj\Debug\netcoreapp3.1\Preprocessor.genruntimeconfig.cache

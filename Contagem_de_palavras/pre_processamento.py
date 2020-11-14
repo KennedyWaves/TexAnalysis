@@ -106,7 +106,7 @@ textoSemPontuacao = removePontuacao(textoSemAcentos)
 #print(['Sem pontuação'] + textoSemPontuacao)
 print()    
 
-stopwordsNLTK = nltk.corpus.stopwords.words('portuguese')
+stopwordsNLTK = nltk.corpus.stopwords.words('english')
 
 def removeStopWords(texto):
     
@@ -132,8 +132,16 @@ def buscaFrequencia(texto):
     return qtd
 
 frequenciaSW = buscaFrequencia(retornaPalavras(textoSemStopWords))
+lista=frequenciaSW.most_common(10000)
+f= open("output.csv","w+")
+f.write('word,freq')
 print('FREQUENCIA_--------------------------')
-print(frequenciaSW.most_common(10000)) #10000 primeiras palavas mais frequentes
+for x in lista:
+    content = '\n"'+x[0]+'","'+str(x[1])+'"'
+    print(content)
+    f.write(content)
+
+
 
 # def aplicaStemmer(texto):
     

@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\WAVES\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\WAVES\\.nuget\\packages"
+    ]
+  }
+}
